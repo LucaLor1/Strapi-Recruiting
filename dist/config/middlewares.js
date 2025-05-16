@@ -3,8 +3,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = [
     'strapi::logger',
     'strapi::errors',
-    'strapi::security',
-    'strapi::cors',
+    {
+        name: 'strapi::security',
+        config: {
+            contentSecurityPolicy: {
+                useDefaults: true,
+                directives: {
+                    'connect-src': ["'self'", 'https:'],
+                    'img-src': ["'self'", 'data:', 'blob:', 'https://*.onrender.com'],
+                    'media-src': ["'self'", 'data:', 'blob:', 'https://*.onrender.com'],
+                    upgradeInsecureRequests: null,
+                },
+            },
+        },
+    },
+    {
+        name: 'strapi::cors',
+        config: {
+            origin: ['*'], // puoi sostituire '*' con il dominio specifico se vuoi restringere l'accesso
+            headers: '*',
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        },
+    },
     'strapi::poweredBy',
     'strapi::query',
     'strapi::body',
