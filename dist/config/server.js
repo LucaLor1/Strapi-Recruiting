@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = () => ({
-    host: '0.0.0.0',
-    port: process.env.PORT,
+exports.default = ({ env }) => ({
+    host: env('HOST', '0.0.0.0'),
+    port: env.int('PORT', process.env.PORT || 1337),
     app: {
-        keys: [process.env.APP_KEYS],
+        keys: env.array('APP_KEYS'),
     },
 });

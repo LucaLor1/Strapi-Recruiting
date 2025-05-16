@@ -1,8 +1,9 @@
-export default () => ({
-  host: '0.0.0.0',
-  port: process.env.PORT,
+export default ({ env }) => ({
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', process.env.PORT || 1337),
   app: {
-    keys: [process.env.APP_KEYS],
+    keys: env.array('APP_KEYS'),
   },
 });
+
 
