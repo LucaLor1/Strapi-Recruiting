@@ -70,7 +70,20 @@
             "enum": [
                 "candidate",
                 "recruiter"
-            ]
+            ],
+            "required": true
+        },
+        "jobOffers": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::job-offer.job-offer",
+            "mappedBy": "recruiter"
+        },
+        "applications": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::application.application",
+            "mappedBy": "candidates"
         }
     }
 }

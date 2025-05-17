@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "skillsLinguistic": {
+      "type": "text"
+    },
+    "skillsTechnical": {
+      "type": "text"
+    },
+    "skillsSoft": {
+      "type": "text"
+    },
+    "cv": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "applications"
+    },
+    "job_offer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::job-offer.job-offer",
+      "inversedBy": "applications"
+    }
+  }
+}
