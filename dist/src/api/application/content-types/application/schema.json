@@ -39,6 +39,9 @@
             "relation": "manyToOne",
             "target": "api::job-offer.job-offer",
             "inversedBy": "applications"
+        },
+        "ApplicationStatus": {
+            "type": "boolean"
         }
     }
 }

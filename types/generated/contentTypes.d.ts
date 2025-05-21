@@ -385,6 +385,7 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    ApplicationStatus: Schema.Attribute.Boolean;
     candidates: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
