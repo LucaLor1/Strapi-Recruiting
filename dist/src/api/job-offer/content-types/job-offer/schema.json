@@ -4,7 +4,8 @@
     "info": {
         "singularName": "job-offer",
         "pluralName": "job-offers",
-        "displayName": "JobOffer"
+        "displayName": "JobOffer",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -40,6 +41,9 @@
             "relation": "oneToMany",
             "target": "api::application.application",
             "mappedBy": "job_offer"
+        },
+        "postedAt": {
+            "type": "datetime"
         }
     }
 }

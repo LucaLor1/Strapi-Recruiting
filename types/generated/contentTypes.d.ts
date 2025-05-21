@@ -416,6 +416,7 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
 export interface ApiJobOfferJobOffer extends Struct.CollectionTypeSchema {
   collectionName: 'job_offers';
   info: {
+    description: '';
     displayName: 'JobOffer';
     pluralName: 'job-offers';
     singularName: 'job-offer';
@@ -439,6 +440,7 @@ export interface ApiJobOfferJobOffer extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.String & Schema.Attribute.Required;
+    postedAt: Schema.Attribute.DateTime;
     published: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     publishedAt: Schema.Attribute.DateTime;
     recruiter: Schema.Attribute.Relation<
