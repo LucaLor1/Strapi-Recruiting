@@ -1,0 +1,29 @@
+{
+    "collectionName": "components_company_profiles",
+    "info": {
+        "displayName": "profile",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "text"
+        },
+        "logoUrl": {
+            "type": "string",
+            "regex": "^https?://[\\w-]+(.[\\w-]+)+[/#?]?.*$"
+        },
+        "sectors": {
+            "type": "richtext"
+        },
+        "headquarters": {
+            "type": "richtext"
+        },
+        "socialLink": {
+            "type": "json"
+        }
+    }
+}

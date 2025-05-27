@@ -373,86 +373,139 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
-  collectionName: 'applications';
+export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
+  collectionName: 'candidates';
   info: {
     description: '';
-    displayName: 'Application';
-    pluralName: 'applications';
-    singularName: 'application';
+    displayName: 'Candidate';
+    pluralName: 'candidates';
+    singularName: 'candidate';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    ApplicationStatus: Schema.Attribute.Boolean;
-    candidates: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    cv: Schema.Attribute.Media<'files', true> & Schema.Attribute.Required;
-    job_offer: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::job-offer.job-offer'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::application.application'
+      'api::candidate.candidate'
+    > &
+      Schema.Attribute.Private;
+    profile: Schema.Attribute.Component<'candidate.profile', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
+  collectionName: 'companies';
+  info: {
+    description: '';
+    displayName: 'Company';
+    pluralName: 'companies';
+    singularName: 'company';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    companyProfile: Schema.Attribute.Component<'company.profile', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company.company'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    skillsLinguistic: Schema.Attribute.Text;
-    skillsSoft: Schema.Attribute.Text;
-    skillsTechnical: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    uploadMediaMaterial: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    viewStats: Schema.Attribute.Component<'company.stats', false>;
+  };
+}
+
+export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
+  collectionName: 'offers';
+  info: {
+    description: '';
+    displayName: 'Offer';
+    pluralName: 'offers';
+    singularName: 'offer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    benefits: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    employmentType: Schema.Attribute.Enumeration<['full-time', 'part-time']>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'> &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    offerStatus: Schema.Attribute.Enumeration<['open', 'closed', 'paused']>;
+    postedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    requirements: Schema.Attribute.RichText;
+    seniority: Schema.Attribute.Enumeration<['junior', 'mid', 'senior']>;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiJobOfferJobOffer extends Struct.CollectionTypeSchema {
-  collectionName: 'job_offers';
+export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
+  collectionName: 'recruiters';
   info: {
     description: '';
-    displayName: 'JobOffer';
-    pluralName: 'job-offers';
-    singularName: 'job-offer';
+    displayName: 'Recruiter';
+    pluralName: 'recruiters';
+    singularName: 'recruiter';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    applications: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::application.application'
-    >;
+    company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::job-offer.job-offer'
+      'api::recruiter.recruiter'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String & Schema.Attribute.Required;
-    postedAt: Schema.Attribute.DateTime;
-    published: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    offers: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'>;
     publishedAt: Schema.Attribute.DateTime;
-    recruiter: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    salary: Schema.Attribute.Decimal;
-    title: Schema.Attribute.Text & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    viewDashboard: Schema.Attribute.JSON;
   };
 }
 
@@ -913,10 +966,6 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
-    applications: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::application.application'
-    >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -928,10 +977,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    jobOffers: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::job-offer.job-offer'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -959,7 +1004,9 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
-    userType: Schema.Attribute.Enumeration<['candidate', 'recruiter']> &
+    userType: Schema.Attribute.Enumeration<
+      ['candidate', 'recruiter', 'admin']
+    > &
       Schema.Attribute.Required;
   };
 }
@@ -974,8 +1021,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::application.application': ApiApplicationApplication;
-      'api::job-offer.job-offer': ApiJobOfferJobOffer;
+      'api::candidate.candidate': ApiCandidateCandidate;
+      'api::company.company': ApiCompanyCompany;
+      'api::offer.offer': ApiOfferOffer;
+      'api::recruiter.recruiter': ApiRecruiterRecruiter;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

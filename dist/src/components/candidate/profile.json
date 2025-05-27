@@ -1,0 +1,25 @@
+{
+    "collectionName": "components_candidate_profiles",
+    "info": {
+        "displayName": "profile",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "surnames": {
+            "type": "string"
+        },
+        "experience": {
+            "type": "text"
+        },
+        "skills": {
+            "type": "richtext"
+        },
+        "languages": {
+            "type": "richtext"
+        }
+    }
+}

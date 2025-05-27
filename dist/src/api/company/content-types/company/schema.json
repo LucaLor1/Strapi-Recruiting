@@ -1,0 +1,36 @@
+{
+    "kind": "collectionType",
+    "collectionName": "companies",
+    "info": {
+        "singularName": "company",
+        "pluralName": "companies",
+        "displayName": "Company",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "companyProfile": {
+            "type": "component",
+            "repeatable": false,
+            "component": "company.profile"
+        },
+        "uploadMediaMaterial": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "viewStats": {
+            "type": "component",
+            "repeatable": false,
+            "component": "company.stats"
+        }
+    }
+}

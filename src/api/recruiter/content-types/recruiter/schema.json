@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recruiters",
+  "info": {
+    "singularName": "recruiter",
+    "pluralName": "recruiters",
+    "displayName": "Recruiter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "viewDashboard": {
+      "type": "json"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company.company"
+    },
+    "offers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::offer.offer"
+    }
+  }
+}

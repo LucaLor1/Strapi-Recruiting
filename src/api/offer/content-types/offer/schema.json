@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offers",
+  "info": {
+    "singularName": "offer",
+    "pluralName": "offers",
+    "displayName": "Offer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "requirements": {
+      "type": "richtext"
+    },
+    "benefits": {
+      "type": "richtext"
+    },
+    "employmentType": {
+      "type": "enumeration",
+      "enum": [
+        "full-time",
+        "part-time"
+      ]
+    },
+    "seniority": {
+      "type": "enumeration",
+      "enum": [
+        "junior",
+        "mid",
+        "senior"
+      ]
+    },
+    "postedAt": {
+      "type": "datetime"
+    },
+    "location": {
+      "type": "string",
+      "regex": "^https?://[\\w-]+(.[\\w-]+)+[/#?]?.*$"
+    },
+    "offerStatus": {
+      "type": "enumeration",
+      "enum": [
+        "open",
+        "closed",
+        "paused"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "candidates",
+    "info": {
+        "singularName": "candidate",
+        "pluralName": "candidates",
+        "displayName": "Candidate",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "profile": {
+            "displayName": "profile",
+            "type": "component",
+            "repeatable": false,
+            "component": "candidate.profile"
+        }
+    }
+}

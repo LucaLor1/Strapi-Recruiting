@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_company_stats",
+  "info": {
+    "displayName": "stats"
+  },
+  "options": {},
+  "attributes": {
+    "totalApplications": {
+      "type": "integer"
+    },
+    "conversionRate": {
+      "type": "decimal"
+    },
+    "geoDistribution": {
+      "type": "json"
+    }
+  }
+}
