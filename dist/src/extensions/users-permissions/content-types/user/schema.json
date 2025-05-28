@@ -73,6 +73,16 @@
                 "admin"
             ],
             "required": true
+        },
+        "notifications": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::notification.notification"
+        },
+        "feedbacks": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::feedback.feedback"
         }
     }
 }

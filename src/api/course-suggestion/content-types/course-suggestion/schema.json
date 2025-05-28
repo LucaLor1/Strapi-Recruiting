@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_suggestions",
+  "info": {
+    "singularName": "course-suggestion",
+    "pluralName": "course-suggestions",
+    "displayName": "CourseSuggestion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "courseName": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "regex": "^https?://[\\w-]+(.[\\w-]+)+[/#?]?.*$"
+    }
+  }
+}

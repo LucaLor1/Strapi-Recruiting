@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "simulation_results",
+  "info": {
+    "singularName": "simulation-result",
+    "pluralName": "simulation-results",
+    "displayName": "SimulationResult"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "score": {
+      "type": "decimal"
+    },
+    "feedback": {
+      "type": "text"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}

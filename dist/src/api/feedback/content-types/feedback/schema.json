@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "feedbacks",
+    "info": {
+        "singularName": "feedback",
+        "pluralName": "feedbacks",
+        "displayName": "Feedback"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "application": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::application.application",
+            "inversedBy": "feedbacks"
+        },
+        "message": {
+            "type": "text"
+        },
+        "sentAt": {
+            "type": "datetime"
+        }
+    }
+}

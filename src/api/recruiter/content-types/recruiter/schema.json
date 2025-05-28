@@ -19,15 +19,16 @@
     "viewDashboard": {
       "type": "json"
     },
-    "company": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::company.company"
-    },
     "offers": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::offer.offer"
+    },
+    "application": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::application.application",
+      "inversedBy": "recruiters"
     }
   }
 }

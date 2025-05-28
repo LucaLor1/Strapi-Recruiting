@@ -21,6 +21,27 @@
       "type": "component",
       "repeatable": false,
       "component": "candidate.profile"
+    },
+    "applyOffers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::application.application"
+    },
+    "receiveSuggestions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-suggestion.course-suggestion"
+    },
+    "simulationResults": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::simulation-result.simulation-result"
+    },
+    "savedOffers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::offer.offer",
+      "inversedBy": "candidates"
     }
   }
 }

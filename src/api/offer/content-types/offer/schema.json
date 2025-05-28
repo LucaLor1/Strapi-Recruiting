@@ -52,6 +52,18 @@
         "closed",
         "paused"
       ]
+    },
+    "applications": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::application.application",
+      "mappedBy": "offer"
+    },
+    "candidates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::candidate.candidate",
+      "mappedBy": "savedOffers"
     }
   }
 }

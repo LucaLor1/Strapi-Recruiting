@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "offer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::offer.offer",
+      "inversedBy": "applications"
+    },
+    "appliedAt": {
+      "type": "datetime"
+    },
+    "applicationStatus": {
+      "type": "enumeration",
+      "enum": [
+        "accepted",
+        "rejected",
+        "interview",
+        "in-review"
+      ]
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback",
+      "mappedBy": "application"
+    },
+    "recruiters": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::recruiter.recruiter",
+      "mappedBy": "application"
+    }
+  }
+}
