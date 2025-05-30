@@ -35,7 +35,8 @@
         "recruiters": {
             "type": "relation",
             "relation": "oneToMany",
-            "target": "api::recruiter.recruiter"
+            "target": "api::recruiter.recruiter",
+            "mappedBy": "company"
         }
     }
 }

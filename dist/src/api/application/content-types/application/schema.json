@@ -4,18 +4,13 @@
     "info": {
         "singularName": "application",
         "pluralName": "applications",
-        "displayName": "Application"
+        "displayName": "Application",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
     },
     "attributes": {
-        "offer": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::offer.offer",
-            "inversedBy": "applications"
-        },
         "appliedAt": {
             "type": "datetime"
         },
@@ -28,17 +23,21 @@
                 "in-review"
             ]
         },
-        "feedbacks": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::feedback.feedback",
-            "mappedBy": "application"
-        },
-        "recruiters": {
+        "feedback": {
             "type": "relation",
             "relation": "oneToOne",
-            "target": "api::recruiter.recruiter",
-            "mappedBy": "application"
+            "target": "api::feedback.feedback",
+            "inversedBy": "application"
+        },
+        "offer": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::offer.offer"
+        },
+        "candidate": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::candidate.candidate"
         }
     }
 }

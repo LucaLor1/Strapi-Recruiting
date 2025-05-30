@@ -376,6 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
   collectionName: 'applications';
   info: {
+    description: '';
     displayName: 'Application';
     pluralName: 'applications';
     singularName: 'application';
@@ -388,10 +389,14 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
       ['accepted', 'rejected', 'interview', 'in-review']
     >;
     appliedAt: Schema.Attribute.DateTime;
+    candidate: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidate.candidate'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
+    feedback: Schema.Attribute.Relation<'oneToOne', 'api::feedback.feedback'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -400,10 +405,6 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     offer: Schema.Attribute.Relation<'oneToOne', 'api::offer.offer'>;
     publishedAt: Schema.Attribute.DateTime;
-    recruiters: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::recruiter.recruiter'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -441,7 +442,6 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::course-suggestion.course-suggestion'
     >;
-    savedOffers: Schema.Attribute.Relation<'manyToMany', 'api::offer.offer'>;
     simulationResults: Schema.Attribute.Relation<
       'oneToMany',
       'api::simulation-result.simulation-result'
@@ -506,6 +506,10 @@ export interface ApiCourseSuggestionCourseSuggestion
     draftAndPublish: true;
   };
   attributes: {
+    candidate: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::candidate.candidate'
+    >;
     courseName: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -537,7 +541,7 @@ export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
   };
   attributes: {
     application: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::application.application'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -562,6 +566,7 @@ export interface ApiNotificationNotification
   extends Struct.CollectionTypeSchema {
   collectionName: 'notifications';
   info: {
+    description: '';
     displayName: 'Notification';
     pluralName: 'notifications';
     singularName: 'notification';
@@ -586,6 +591,10 @@ export interface ApiNotificationNotification
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -602,14 +611,10 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
   };
   attributes: {
     applications: Schema.Attribute.Relation<
-      'oneToOne',
+      'oneToMany',
       'api::application.application'
     >;
     benefits: Schema.Attribute.RichText;
-    candidates: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::candidate.candidate'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -622,6 +627,10 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
     offerStatus: Schema.Attribute.Enumeration<['open', 'closed', 'paused']>;
     postedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
+    recruiter: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::recruiter.recruiter'
+    >;
     requirements: Schema.Attribute.RichText;
     seniority: Schema.Attribute.Enumeration<['junior', 'mid', 'senior']>;
     title: Schema.Attribute.String;
@@ -643,10 +652,7 @@ export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    application: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::application.application'
-    >;
+    company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -673,6 +679,7 @@ export interface ApiSimulationResultSimulationResult
   extends Struct.CollectionTypeSchema {
   collectionName: 'simulation_results';
   info: {
+    description: '';
     displayName: 'SimulationResult';
     pluralName: 'simulation-results';
     singularName: 'simulation-result';
@@ -681,6 +688,10 @@ export interface ApiSimulationResultSimulationResult
     draftAndPublish: true;
   };
   attributes: {
+    candidate: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidate.candidate'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1158,6 +1169,10 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    candidate: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidate.candidate'
+    >;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1186,6 +1201,10 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    recruiter: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::recruiter.recruiter'
+    >;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',

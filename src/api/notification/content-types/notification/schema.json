@@ -4,7 +4,8 @@
   "info": {
     "singularName": "notification",
     "pluralName": "notifications",
-    "displayName": "Notification"
+    "displayName": "Notification",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,11 @@
     },
     "read": {
       "type": "boolean"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

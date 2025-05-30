@@ -14,21 +14,22 @@
     "user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "recruiter"
     },
     "viewDashboard": {
       "type": "json"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "recruiters"
     },
     "offers": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::offer.offer"
-    },
-    "application": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::application.application",
-      "inversedBy": "recruiters"
     }
   }
 }

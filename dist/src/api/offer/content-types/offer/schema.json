@@ -55,15 +55,13 @@
         },
         "applications": {
             "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::application.application",
-            "mappedBy": "offer"
+            "relation": "oneToMany",
+            "target": "api::application.application"
         },
-        "candidates": {
+        "recruiter": {
             "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::candidate.candidate",
-            "mappedBy": "savedOffers"
+            "relation": "oneToOne",
+            "target": "api::recruiter.recruiter"
         }
     }
 }

@@ -4,7 +4,8 @@
     "info": {
         "singularName": "simulation-result",
         "pluralName": "simulation-results",
-        "displayName": "SimulationResult"
+        "displayName": "SimulationResult",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -18,6 +19,11 @@
         },
         "date": {
             "type": "datetime"
+        },
+        "candidate": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::candidate.candidate"
         }
     }
 }
