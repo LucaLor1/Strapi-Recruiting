@@ -14,8 +14,8 @@
         "user": {
             "type": "relation",
             "relation": "oneToOne",
-            "target": "plugin::users-permissions.user",
-            "inversedBy": "recruiter"
+            "mappedBy": "recruiter",
+            "target": "plugin::users-permissions.user"
         },
         "viewDashboard": {
             "type": "json"
