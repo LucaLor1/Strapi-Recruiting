@@ -423,21 +423,22 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::application.application'
     >;
-    availability: Schema.Attribute.String;
-    birthDate: Schema.Attribute.Date;
-    city: Schema.Attribute.String;
+    citta: Schema.Attribute.String;
+    cognome: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    experience: Schema.Attribute.Text;
-    languages: Schema.Attribute.Text;
+    dataNascita: Schema.Attribute.Date;
+    disponibilita: Schema.Attribute.String;
+    esperienza: Schema.Attribute.Text;
+    lingue: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::candidate.candidate'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
+    nome: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     reciveSuggestions: Schema.Attribute.Relation<
       'oneToOne',
@@ -448,8 +449,7 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
       'api::simulation-result.simulation-result'
     >;
     skills: Schema.Attribute.Blocks;
-    studyTitle: Schema.Attribute.String;
-    surname: Schema.Attribute.String;
+    titoloStudio: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -472,7 +472,6 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    companyProfile: Schema.Attribute.Component<'company.profile', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -482,6 +481,8 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
       'api::company.company'
     > &
       Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    partitaIVA: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     recruiters: Schema.Attribute.Relation<
       'oneToMany',

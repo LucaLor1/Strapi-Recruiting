@@ -32,31 +32,31 @@
       "relation": "oneToOne",
       "target": "api::simulation-result.simulation-result"
     },
-    "name": {
+    "nome": {
       "type": "string"
     },
-    "surname": {
+    "cognome": {
       "type": "string"
     },
-    "experience": {
+    "esperienza": {
       "type": "text"
     },
     "skills": {
       "type": "blocks"
     },
-    "languages": {
+    "lingue": {
       "type": "text"
     },
-    "birthDate": {
+    "dataNascita": {
       "type": "date"
     },
-    "city": {
+    "citta": {
       "type": "string"
     },
-    "studyTitle": {
+    "titoloStudio": {
       "type": "string"
     },
-    "availability": {
+    "disponibilita": {
       "type": "string"
     }
   }
