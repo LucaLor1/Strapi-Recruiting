@@ -9,17 +9,17 @@
         "name": {
             "type": "string"
         },
-        "surnames": {
+        "surname": {
             "type": "string"
         },
         "experience": {
             "type": "text"
         },
         "skills": {
-            "type": "richtext"
+            "type": "blocks"
         },
         "languages": {
-            "type": "richtext"
+            "type": "blocks"
         }
     }
 }

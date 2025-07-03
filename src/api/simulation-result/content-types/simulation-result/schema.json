@@ -19,11 +19,6 @@
     },
     "date": {
       "type": "datetime"
-    },
-    "candidate": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::candidate.candidate"
     }
   }
 }

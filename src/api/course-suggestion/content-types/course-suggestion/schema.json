@@ -19,12 +19,6 @@
     "link": {
       "type": "string",
       "regex": "^https?://[\\w-]+(.[\\w-]+)+[/#?]?.*$"
-    },
-    "candidate": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::candidate.candidate",
-      "inversedBy": "receiveSuggestions"
     }
   }
 }

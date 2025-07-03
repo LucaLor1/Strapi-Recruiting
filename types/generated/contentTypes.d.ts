@@ -389,10 +389,6 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
       ['accepted', 'rejected', 'interview', 'in-review']
     >;
     appliedAt: Schema.Attribute.DateTime;
-    candidate: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::candidate.candidate'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,32 +420,40 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
   };
   attributes: {
     applyOffers: Schema.Attribute.Relation<
-      'oneToMany',
+      'oneToOne',
       'api::application.application'
     >;
+    availability: Schema.Attribute.String;
+    birthDate: Schema.Attribute.Date;
+    city: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    experience: Schema.Attribute.Text;
+    languages: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::candidate.candidate'
     > &
       Schema.Attribute.Private;
-    profile: Schema.Attribute.Component<'candidate.profile', false>;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    receiveSuggestions: Schema.Attribute.Relation<
-      'oneToMany',
+    reciveSuggestions: Schema.Attribute.Relation<
+      'oneToOne',
       'api::course-suggestion.course-suggestion'
     >;
-    simulationResults: Schema.Attribute.Relation<
-      'oneToMany',
+    simulationResult: Schema.Attribute.Relation<
+      'oneToOne',
       'api::simulation-result.simulation-result'
     >;
+    skills: Schema.Attribute.Blocks;
+    studyTitle: Schema.Attribute.String;
+    surname: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
+    users_permissions_user: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
     >;
@@ -506,10 +510,6 @@ export interface ApiCourseSuggestionCourseSuggestion
     draftAndPublish: true;
   };
   attributes: {
-    candidate: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::candidate.candidate'
-    >;
     courseName: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -688,10 +688,6 @@ export interface ApiSimulationResultSimulationResult
     draftAndPublish: true;
   };
   attributes: {
-    candidate: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::candidate.candidate'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

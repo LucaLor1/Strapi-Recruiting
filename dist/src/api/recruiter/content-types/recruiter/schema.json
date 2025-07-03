@@ -14,8 +14,8 @@
         "user": {
             "type": "relation",
             "relation": "oneToOne",
-            "mappedBy": "recruiter",
-            "target": "plugin::users-permissions.user"
+            "target": "plugin::users-permissions.user",
+            "mappedBy": "recruiter"
         },
         "viewDashboard": {
             "type": "json"

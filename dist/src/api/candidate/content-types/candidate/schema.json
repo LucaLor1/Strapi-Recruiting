@@ -11,33 +11,53 @@
         "draftAndPublish": true
     },
     "attributes": {
-        "user": {
+        "users_permissions_user": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "plugin::users-permissions.user",
             "inversedBy": "candidate"
         },
-        "profile": {
-            "displayName": "profile",
-            "type": "component",
-            "repeatable": false,
-            "component": "candidate.profile"
-        },
         "applyOffers": {
             "type": "relation",
-            "relation": "oneToMany",
+            "relation": "oneToOne",
             "target": "api::application.application"
         },
-        "receiveSuggestions": {
+        "reciveSuggestions": {
             "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::course-suggestion.course-suggestion",
-            "mappedBy": "candidate"
+            "relation": "oneToOne",
+            "target": "api::course-suggestion.course-suggestion"
         },
-        "simulationResults": {
+        "simulationResult": {
             "type": "relation",
-            "relation": "oneToMany",
+            "relation": "oneToOne",
             "target": "api::simulation-result.simulation-result"
+        },
+        "name": {
+            "type": "string"
+        },
+        "surname": {
+            "type": "string"
+        },
+        "experience": {
+            "type": "text"
+        },
+        "skills": {
+            "type": "blocks"
+        },
+        "languages": {
+            "type": "text"
+        },
+        "birthDate": {
+            "type": "date"
+        },
+        "city": {
+            "type": "string"
+        },
+        "studyTitle": {
+            "type": "string"
+        },
+        "availability": {
+            "type": "string"
         }
     }
 }

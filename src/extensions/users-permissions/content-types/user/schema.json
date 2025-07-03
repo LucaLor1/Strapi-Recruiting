@@ -84,17 +84,17 @@
       "relation": "oneToMany",
       "target": "api::feedback.feedback"
     },
-    "candidate": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::candidate.candidate",
-      "mappedBy": "user"
-    },
     "recruiter": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::recruiter.recruiter",
       "inversedBy": "user"
+    },
+    "candidate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::candidate.candidate",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

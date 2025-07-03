@@ -33,11 +33,6 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::offer.offer"
-        },
-        "candidate": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::candidate.candidate"
         }
     }
 }

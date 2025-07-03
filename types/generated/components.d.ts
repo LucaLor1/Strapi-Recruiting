@@ -8,10 +8,10 @@ export interface CandidateProfile extends Struct.ComponentSchema {
   };
   attributes: {
     experience: Schema.Attribute.Text;
-    languages: Schema.Attribute.RichText;
+    languages: Schema.Attribute.Blocks;
     name: Schema.Attribute.String;
-    skills: Schema.Attribute.RichText;
-    surnames: Schema.Attribute.String;
+    skills: Schema.Attribute.Blocks;
+    surname: Schema.Attribute.String;
   };
 }
 

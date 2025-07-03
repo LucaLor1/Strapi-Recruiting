@@ -12,10 +12,10 @@
   },
   "attributes": {
     "user": {
-    "type": "relation",
-    "relation": "oneToOne",
-    "mappedBy": "recruiter",
-    "target": "plugin::users-permissions.user"
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "recruiter"
     },
     "viewDashboard": {
       "type": "json"
