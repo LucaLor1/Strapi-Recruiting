@@ -11,11 +11,11 @@
         "draftAndPublish": true
     },
     "attributes": {
-        "user": {
+        "users_permissions_user": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "plugin::users-permissions.user",
-            "mappedBy": "recruiter"
+            "inversedBy": "recruiter"
         },
         "viewDashboard": {
             "type": "json"
@@ -30,6 +30,18 @@
             "type": "relation",
             "relation": "oneToMany",
             "target": "api::offer.offer"
+        },
+        "nome": {
+            "type": "string"
+        },
+        "cognome": {
+            "type": "string"
+        },
+        "recruiter_request": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::recruiter-request.recruiter-request",
+            "mappedBy": "recruiter"
         }
     }
 }

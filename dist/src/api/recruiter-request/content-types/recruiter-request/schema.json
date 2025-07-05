@@ -1,0 +1,35 @@
+{
+    "kind": "collectionType",
+    "collectionName": "recruiter_requests",
+    "info": {
+        "singularName": "recruiter-request",
+        "pluralName": "recruiter-requests",
+        "displayName": "RecruiterRequest",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "recruiter": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::recruiter.recruiter",
+            "inversedBy": "recruiter_request"
+        },
+        "company": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::company.company",
+            "inversedBy": "company_request"
+        },
+        "stato": {
+            "type": "enumeration",
+            "enum": [
+                "in attesa",
+                "approvata",
+                "rifiutata"
+            ]
+        }
+    }
+}

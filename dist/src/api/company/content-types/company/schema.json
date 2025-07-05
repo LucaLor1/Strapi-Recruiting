@@ -38,6 +38,18 @@
         },
         "partitaIVA": {
             "type": "string"
+        },
+        "users_permissions_user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "company"
+        },
+        "company_request": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::recruiter-request.recruiter-request",
+            "mappedBy": "company"
         }
     }
 }

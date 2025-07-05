@@ -70,6 +70,7 @@
             "enum": [
                 "candidate",
                 "recruiter",
+                "company",
                 "admin"
             ],
             "required": true
@@ -84,17 +85,23 @@
             "relation": "oneToMany",
             "target": "api::feedback.feedback"
         },
-        "recruiter": {
-            "type": "relation",
-            "relation": "oneToOne",
-            "target": "api::recruiter.recruiter",
-            "inversedBy": "user"
-        },
         "candidate": {
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::candidate.candidate",
             "mappedBy": "users_permissions_user"
+        },
+        "recruiter": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::recruiter.recruiter",
+            "mappedBy": "users_permissions_user"
+        },
+        "company": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::company.company",
+            "inversedBy": "users_permissions_user"
         }
     }
 }

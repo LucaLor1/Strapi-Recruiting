@@ -472,6 +472,10 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    company_request: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::recruiter-request.recruiter-request'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -494,6 +498,10 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     uploadMediaMaterial: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
+    >;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
     >;
     viewStats: Schema.Attribute.Component<'company.stats', false>;
   };
@@ -641,6 +649,43 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRecruiterRequestRecruiterRequest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'recruiter_requests';
+  info: {
+    description: '';
+    displayName: 'RecruiterRequest';
+    pluralName: 'recruiter-requests';
+    singularName: 'recruiter-request';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::recruiter-request.recruiter-request'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    recruiter: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::recruiter.recruiter'
+    >;
+    stato: Schema.Attribute.Enumeration<
+      ['in attesa', 'approvata', 'rifiutata']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
   collectionName: 'recruiters';
   info: {
@@ -653,6 +698,7 @@ export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    cognome: Schema.Attribute.String;
     company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -663,12 +709,17 @@ export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
       'api::recruiter.recruiter'
     > &
       Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
     offers: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'>;
     publishedAt: Schema.Attribute.DateTime;
+    recruiter_request: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::recruiter-request.recruiter-request'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
+    users_permissions_user: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
     >;
@@ -1170,6 +1221,7 @@ export interface PluginUsersPermissionsUser
       'oneToOne',
       'api::candidate.candidate'
     >;
+    company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
@@ -1217,7 +1269,7 @@ export interface PluginUsersPermissionsUser
         minLength: 3;
       }>;
     userType: Schema.Attribute.Enumeration<
-      ['candidate', 'recruiter', 'admin']
+      ['candidate', 'recruiter', 'company', 'admin']
     > &
       Schema.Attribute.Required;
   };
@@ -1240,6 +1292,7 @@ declare module '@strapi/strapi' {
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::notification.notification': ApiNotificationNotification;
       'api::offer.offer': ApiOfferOffer;
+      'api::recruiter-request.recruiter-request': ApiRecruiterRequestRecruiterRequest;
       'api::recruiter.recruiter': ApiRecruiterRecruiter;
       'api::simulation-result.simulation-result': ApiSimulationResultSimulationResult;
       'plugin::content-releases.release': PluginContentReleasesRelease;
