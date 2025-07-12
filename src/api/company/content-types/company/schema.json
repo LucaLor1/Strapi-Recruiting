@@ -43,7 +43,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "company"
+      "mappedBy": "company"
     },
     "company_request": {
       "type": "relation",

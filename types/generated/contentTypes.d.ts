@@ -1269,7 +1269,7 @@ export interface PluginUsersPermissionsUser
         minLength: 3;
       }>;
     userType: Schema.Attribute.Enumeration<
-      ['candidate', 'recruiter', 'company', 'admin']
+      ['Candidato', 'Recruiter', 'Company', 'Admin']
     > &
       Schema.Attribute.Required;
   };

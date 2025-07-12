@@ -68,10 +68,10 @@
     "userType": {
       "type": "enumeration",
       "enum": [
-        "candidate",
-        "recruiter",
-        "company",
-        "admin"
+        "Candidato",
+        "Recruiter",
+        "Company",
+        "Admin"
       ],
       "required": true
     },
