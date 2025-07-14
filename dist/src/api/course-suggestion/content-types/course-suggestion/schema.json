@@ -4,10 +4,11 @@
     "info": {
         "singularName": "course-suggestion",
         "pluralName": "course-suggestions",
-        "displayName": "CourseSuggestion"
+        "displayName": "CourseSuggestion",
+        "description": ""
     },
     "options": {
-        "draftAndPublish": true
+        "draftAndPublish": false
     },
     "attributes": {
         "courseName": {

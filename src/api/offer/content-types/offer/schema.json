@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
@@ -42,8 +42,7 @@
       "type": "datetime"
     },
     "location": {
-      "type": "string",
-      "regex": "^https?://[\\w-]+(.[\\w-]+)+[/#?]?.*$"
+      "type": "string"
     },
     "offerStatus": {
       "type": "enumeration",

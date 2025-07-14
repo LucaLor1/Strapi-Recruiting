@@ -382,7 +382,7 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
     singularName: 'application';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     applicationStatus: Schema.Attribute.Enumeration<
@@ -416,7 +416,7 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
     singularName: 'candidate';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     applyOffers: Schema.Attribute.Relation<
@@ -469,7 +469,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     singularName: 'company';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company_request: Schema.Attribute.Relation<
@@ -511,12 +511,13 @@ export interface ApiCourseSuggestionCourseSuggestion
   extends Struct.CollectionTypeSchema {
   collectionName: 'course_suggestions';
   info: {
+    description: '';
     displayName: 'CourseSuggestion';
     pluralName: 'course-suggestions';
     singularName: 'course-suggestion';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     courseName: Schema.Attribute.String;
@@ -541,12 +542,13 @@ export interface ApiCourseSuggestionCourseSuggestion
 export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
   collectionName: 'feedbacks';
   info: {
+    description: '';
     displayName: 'Feedback';
     pluralName: 'feedbacks';
     singularName: 'feedback';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     application: Schema.Attribute.Relation<
@@ -581,7 +583,7 @@ export interface ApiNotificationNotification
     singularName: 'notification';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Schema.Attribute.Text;
@@ -616,7 +618,7 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
     singularName: 'offer';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     applications: Schema.Attribute.Relation<
@@ -659,7 +661,7 @@ export interface ApiRecruiterRequestRecruiterRequest
     singularName: 'recruiter-request';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
@@ -695,7 +697,7 @@ export interface ApiRecruiterRecruiter extends Struct.CollectionTypeSchema {
     singularName: 'recruiter';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     cognome: Schema.Attribute.String;
@@ -737,7 +739,7 @@ export interface ApiSimulationResultSimulationResult
     singularName: 'simulation-result';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
