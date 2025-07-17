@@ -17,10 +17,11 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "candidate"
     },
-    "applyOffers": {
+    "apply_offer": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::application.application"
+      "target": "api::application.application",
+      "inversedBy": "candidate"
     },
     "reciveSuggestions": {
       "type": "relation",
@@ -41,9 +42,6 @@
     "esperienza": {
       "type": "text"
     },
-    "skills": {
-      "type": "blocks"
-    },
     "lingue": {
       "type": "text"
     },
@@ -58,6 +56,15 @@
     },
     "disponibilita": {
       "type": "string"
+    },
+    "skills": {
+      "type": "text"
+    },
+    "favorite_offers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::offer.offer",
+      "mappedBy": "favorited_by_candidates"
     }
   }
 }

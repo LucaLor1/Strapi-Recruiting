@@ -61,6 +61,32 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::recruiter.recruiter"
+        },
+        "sector": {
+            "type": "enumeration",
+            "enum": [
+                "Tecnologia & IT",
+                "Ingegneria",
+                "Sanità & Medicina",
+                "Economia & Finanza",
+                "Marketing & Vendite",
+                "Risorse Umane",
+                "Amministrazione & Legale",
+                "Educazione & Formazione",
+                "Design & Creatività",
+                "Logistica & Supply Chain",
+                "Turismo & Ospitalità",
+                "Agricoltura & Alimentare",
+                "Manifattura & Produzione",
+                "Servizi alla Persona",
+                "Altro / Generico"
+            ]
+        },
+        "favorited_by_candidates": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::candidate.candidate",
+            "inversedBy": "favorite_offers"
         }
     }
 }

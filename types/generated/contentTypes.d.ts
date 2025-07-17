@@ -386,9 +386,13 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
   };
   attributes: {
     applicationStatus: Schema.Attribute.Enumeration<
-      ['accepted', 'rejected', 'interview', 'in-review']
+      ['in revisione', 'accettata', 'rifiutata', 'colloquio']
     >;
     appliedAt: Schema.Attribute.DateTime;
+    candidate: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidate.candidate'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -419,7 +423,7 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    applyOffers: Schema.Attribute.Relation<
+    apply_offer: Schema.Attribute.Relation<
       'oneToOne',
       'api::application.application'
     >;
@@ -431,6 +435,10 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
     dataNascita: Schema.Attribute.Date;
     disponibilita: Schema.Attribute.String;
     esperienza: Schema.Attribute.Text;
+    favorite_offers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::offer.offer'
+    >;
     lingue: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -448,7 +456,7 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::simulation-result.simulation-result'
     >;
-    skills: Schema.Attribute.Blocks;
+    skills: Schema.Attribute.Text;
     titoloStudio: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -631,6 +639,10 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     employmentType: Schema.Attribute.Enumeration<['full-time', 'part-time']>;
+    favorited_by_candidates: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::candidate.candidate'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'> &
       Schema.Attribute.Private;
@@ -643,6 +655,25 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
       'api::recruiter.recruiter'
     >;
     requirements: Schema.Attribute.RichText;
+    sector: Schema.Attribute.Enumeration<
+      [
+        'Tecnologia & IT',
+        'Ingegneria',
+        'Sanit\u00E0 & Medicina',
+        'Economia & Finanza',
+        'Marketing & Vendite',
+        'Risorse Umane',
+        'Amministrazione & Legale',
+        'Educazione & Formazione',
+        'Design & Creativit\u00E0',
+        'Logistica & Supply Chain',
+        'Turismo & Ospitalit\u00E0',
+        'Agricoltura & Alimentare',
+        'Manifattura & Produzione',
+        'Servizi alla Persona',
+        'Altro / Generico',
+      ]
+    >;
     seniority: Schema.Attribute.Enumeration<['junior', 'mid', 'senior']>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

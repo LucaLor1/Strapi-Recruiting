@@ -17,10 +17,10 @@
     "applicationStatus": {
       "type": "enumeration",
       "enum": [
-        "accepted",
-        "rejected",
-        "interview",
-        "in-review"
+        "in revisione",
+        "accettata",
+        "rifiutata",
+        "colloquio"
       ]
     },
     "feedback": {
@@ -33,6 +33,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::offer.offer"
+    },
+    "candidate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::candidate.candidate",
+      "mappedBy": "apply_offer"
     }
   }
 }
