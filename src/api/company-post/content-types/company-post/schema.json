@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_posts",
+  "info": {
+    "singularName": "company-post",
+    "pluralName": "company-posts",
+    "displayName": "CompanyPost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "company_posts"
+    },
+    "testo": {
+      "type": "text"
+    }
+  }
+}

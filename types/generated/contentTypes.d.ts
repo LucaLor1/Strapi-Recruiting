@@ -468,6 +468,40 @@ export interface ApiCandidateCandidate extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCompanyPostCompanyPost extends Struct.CollectionTypeSchema {
+  collectionName: 'company_posts';
+  info: {
+    description: '';
+    displayName: 'CompanyPost';
+    pluralName: 'company-posts';
+    singularName: 'company-post';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    company: Schema.Attribute.Relation<'manyToOne', 'api::company.company'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-post.company-post'
+    > &
+      Schema.Attribute.Private;
+    media: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    testo: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   collectionName: 'companies';
   info: {
@@ -480,6 +514,10 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    company_posts: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-post.company-post'
+    >;
     company_request: Schema.Attribute.Relation<
       'oneToOne',
       'api::recruiter-request.recruiter-request'
@@ -503,10 +541,6 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    uploadMediaMaterial: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     users_permissions_user: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
@@ -1320,6 +1354,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::application.application': ApiApplicationApplication;
       'api::candidate.candidate': ApiCandidateCandidate;
+      'api::company-post.company-post': ApiCompanyPostCompanyPost;
       'api::company.company': ApiCompanyCompany;
       'api::course-suggestion.course-suggestion': ApiCourseSuggestionCourseSuggestion;
       'api::feedback.feedback': ApiFeedbackFeedback;

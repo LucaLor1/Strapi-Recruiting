@@ -11,17 +11,6 @@
         "draftAndPublish": false
     },
     "attributes": {
-        "uploadMediaMaterial": {
-            "type": "media",
-            "multiple": true,
-            "required": false,
-            "allowedTypes": [
-                "images",
-                "files",
-                "videos",
-                "audios"
-            ]
-        },
         "viewStats": {
             "type": "component",
             "repeatable": false,
@@ -49,6 +38,12 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::recruiter-request.recruiter-request",
+            "mappedBy": "company"
+        },
+        "company_posts": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::company-post.company-post",
             "mappedBy": "company"
         }
     }
