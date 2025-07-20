@@ -514,6 +514,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    citta: Schema.Attribute.String;
     company_posts: Schema.Attribute.Relation<
       'oneToMany',
       'api::company-post.company-post'
@@ -545,7 +546,6 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    viewStats: Schema.Attribute.Component<'company.stats', false>;
   };
 }
 

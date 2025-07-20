@@ -11,11 +11,6 @@
         "draftAndPublish": false
     },
     "attributes": {
-        "viewStats": {
-            "type": "component",
-            "repeatable": false,
-            "component": "company.stats"
-        },
         "recruiters": {
             "type": "relation",
             "relation": "oneToMany",
@@ -45,6 +40,9 @@
             "relation": "oneToMany",
             "target": "api::company-post.company-post",
             "mappedBy": "company"
+        },
+        "citta": {
+            "type": "string"
         }
     }
 }

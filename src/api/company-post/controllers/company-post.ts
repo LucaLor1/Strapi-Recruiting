@@ -1,12 +1,10 @@
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreController('api::company-post.company-post', ({ strapi }) => ({
+
   async create(ctx) {
     const user = ctx.state.user;
-
-    if (!user) {
-      return ctx.unauthorized('Utente non autenticato');
-    }
+    if (!user) return ctx.unauthorized('Utente non autenticato');
 
     const { data, files } = ctx.request.body;
     let parsedData = {};
@@ -17,9 +15,6 @@ export default factories.createCoreController('api::company-post.company-post', 
       return ctx.badRequest('Formato JSON non valido');
     }
 
-    // ✅ NON imposta company, lo lasciamo al frontend
-    // parsedData.company = Number(user.entityId);  <-- rimuovi questa riga
-
     const entry = await strapi.entityService.create('api::company-post.company-post', {
       data: parsedData,
       files: ctx.request.files,
@@ -29,4 +24,35 @@ export default factories.createCoreController('api::company-post.company-post', 
     const sanitizedEntry = await this.sanitizeOutput(entry, ctx);
     return this.transformResponse(sanitizedEntry);
   },
+
+  async find(ctx) {
+    const user = ctx.state.user;
+    if (!user) return ctx.unauthorized('Utente non autenticato');
+
+    // 🔍 Verifica se l'utente è associato a un'azienda
+    const company = await strapi.db.query('api::company.company').findOne({
+      where: { users_permissions_user: user.id },
+    });
+
+    if (company) {
+      // 👨‍💼 Se è azienda, mostra solo i suoi post
+      ctx.query = {
+        ...ctx.query,
+        filters: {
+          company: { id: company.id },
+        },
+        populate: '*',
+      };
+    } else {
+      // 👤 Se è candidato o altro → mostra tutti i post aziendali
+      ctx.query = {
+        ...ctx.query,
+        populate: '*',
+      };
+    }
+
+    const { data, meta } = await super.find(ctx);
+    return { data, meta };
+  }
+
 }));
